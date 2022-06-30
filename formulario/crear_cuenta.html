@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>Registro de usuario</title>
+</head>
+<body>
+    <header><h1>Crear Usuario</h1>
+        <img class="img-alumno" src="../images/alumno.png" alt="Alumno-foto" align="right"></header>
+    <main>
+    <div align="center" class="crearcuenta-form">
+    <table>
+        <caption><h2>Crear usuario</h2></caption></thead>
+    <form action="guardar_usuario.php" method="Post">
+        <tr><td><label for="cod_us" hidden>Codigo de usuario</label></td><td><input hidden type="number" name="cod_us" id="cod_us" placeholder="Ingrese su codigo de usuario"><br></td></tr>
+        <tr><td><label for="txt_name">Nombre de usuario</label></td><td><input type="text" name="txt_name" id="txt_name" placeholder="Ingrese su nombre de usuario"><br></td></tr>
+        <tr><td><label for="pass">Contraseña</label></td><td><input type="password" name="pass" id="pass" placeholder="Ingrese una contraseña"><br></td></tr>
+        <tr><td><label for="correo">Correo Electronico</label></td><td><input type="email" name="correo" id="correo" placeholder="Ingrese su correo electrónico"></td></tr><br>
+        <!-- <tr><td><label for="codestado">Estado</label></td><td><select name="codestado[]" id="codestado[]"><option value="1">Activo</option> -->
+        <!-- <option value="0">Inactivo</option></select></td></tr> -->
+    </table>
+    <br>
+    <input type="submit" name="crearcuenta" id="crear_cuenta" value="Crear cuenta">
+    <a href="login.html">Volver atrás</a>
+    </form>
+</div>
+</main>
+<div class="espacio">
+    <footer>
+        &copy 2022 - Sistema de Alumnos creado por Peralta Rodrigo
+    </footer>
+</body>
+</html>

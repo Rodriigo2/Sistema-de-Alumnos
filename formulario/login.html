@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>Formularios</title>
+</head>
+<body>
+    <header><h1>Bienvenido al Sistema de Alumnos</h1>
+        <img class="img-alumno" src="../images/alumno.png" alt="Alumno-foto" align="right"></header>
+    <main>
+    <div align="center" class="login-form">
+        <table>
+            <caption><h2>Iniciar sesión</h2></caption></thead>
+    <form action="validar_sesion.php" method="post">
+        <tr><td><label for="mail">E-mail</td><td><input type="email" name="mail" id="mail" placeholder="Ingrese su correo electrónico"/></label><br></td></tr>
+        <tr><td><label for="pass">Clave </td><td><input type="password" name="pass" id="pass" placeholder="Ingrese su contraseña"/></label><br><br></td></tr>
+        <br>
+    </table>
+    <input type="submit" name="btn-enviar" id="btn-enviar" value="Ingresar">
+    <input type="reset" name="btn-reset" id="btn-reset"><br>
+        <a href="crear_cuenta.html" target="_blank">Crear cuenta |</a>
+        <a href="lista_usuario.php" target="_blank">Lista de usuarios</a>
+    </div>
+    </form>
+</main>
+    <div class="espacio">
+        <footer>
+            &copy 2022 - Sistema de Alumnos creado por Peralta Rodrigo
+        </footer>
+</body>
+</html>
