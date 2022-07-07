@@ -10,8 +10,7 @@
     <title>Listado de usuarios</title>
 </head>
 <body>
-<header><h1>Listado de Usuarios</h1>
-<img class="img-alumno" src="../images/alumno.png" alt="Alumno-foto" align="right"></header>
+<header><h1>Listado de Usuarios</h1></header>
 <main>
     <div align="center" class="table-wrapper">
     <table border="1" class="fl-table" bgcolor="white">
@@ -27,7 +26,7 @@
         <tbody>
 <?php
 include "../conexion.php";
-$sql = "Select * From usuarios order by cod_us";
+$sql = "Select usuarios.*, estado.desc_estado From usuarios inner join estado on usuarios.codestado=estado.id_estado order by cod_us";
 $res=mysqli_query($con, $sql);
 if(empty($res)){
     echo '<script>alert("");window.location="index.html";</script>';
@@ -35,7 +34,7 @@ if(empty($res)){
     $cant_registros=mysqli_num_rows($res);
     if($cant_registros>0){
         while($registro = mysqli_fetch_array($res)){
-        echo   '<tr><td>'.$registro['cod_us'].'</td><td>'.$registro['nombre'].'</td><td>'.$registro['clave'].'</td><td>'.$registro['codestado'].'</td><td>'.$registro['email'].'</td>';
+        echo   '<tr><td>'.$registro['cod_us'].'</td><td>'.$registro['nombre'].'</td><td>'.$registro['clave'].'</td><td>'.$registro['desc_estado'].'</td><td>'.$registro['email'].'</td>';
          echo '<td><a href="edit_usuario.php?codigo='.$registro['cod_us'].'">Editar</a></td>';
          echo '<td><a href="borrar_usuario.php?codigo='.$registro['cod_us'].'">Borrar</a></td>';
         echo '</tr>';

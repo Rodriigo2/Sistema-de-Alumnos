@@ -47,13 +47,14 @@
     <ul class="nav">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="ficha_alumno/formulario_alumno.php">Alumno</a>
-            <ul>
+            <!-- <ul>
                 <li><a href="formulario/login.html">Usuario</a></li>
-            </ul></li>
+            </ul> -->
+        </li>
         <li><a href="cursos.html">Cursos</a></li>
         <li><a href="inscripciones.php">Inscripciones</a>
         <ul>
-            <li><a href="cuotas.php">Cuotas</a></li>
+            <li><a href="cuotas.php?nrodoc=0">Cuotas</a></li>
         </ul>
         </li>
         <li><a href="inasistencia.php">Inasistencias</a>
@@ -61,6 +62,7 @@
                 <li><a href="justificar-inasistencia.php">Justificación de Inasistencia</a></li>
             </ul>
         </li>
+        <li><a href="formulario/logout.php" class="logout">Cerrar Sesión</a></li>
     </ul>
 </div>
 <main>
@@ -71,7 +73,9 @@
         <tr><td><label for="txtcod">Codigo</label></td>
         <td><input type="number" name="txtcod" id="txtcod" placeholder="Ingrese nuevo código"></td><br></tr>
         <td><label for="txtnombre">Nombre de la especialidad</label></td>
-        <td><input type="text" name="txtnombre" id="txtnombre" placeholder="Descripción de la especialidad"><br><br></td></tr>
+        <td><input type="text" name="txtnombre" id="txtnombre" placeholder="Descripción de la especialidad"><br></td></tr>
+        <tr><td><label for="valor">Valor especialidad</label></td>
+        <td><input type="number" name="valor" id="valor" placeholder="Ingrese un valor"></td></tr>
     </table>
     <input type="submit" name="btnsave" id="btnsave" value="Guardar Especialidad">
     </form>

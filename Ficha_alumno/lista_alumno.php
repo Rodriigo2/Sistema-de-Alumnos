@@ -47,13 +47,14 @@
     <ul class="nav">
         <li><a href="../index.html">Inicio</a></li>
         <li><a href="formulario_alumno.php">Alumno</a>
-        <ul>
+        <!-- <ul>
             <li><a href="../formulario/login.html">Usuario</a></li>
-        </ul></li>
+        </ul> -->
+    </li>
         <li><a href="../cursos.html">Cursos</a></li>
         <li><a href="../inscripciones.php">Inscripciones</a>
         <ul>
-            <li><a href="../cuotas.php">Cuotas</a></li>
+            <li><a href="../cuotas.php?nrodoc=0">Cuotas</a></li>
         </ul>
         </li>
         <li><a href="../inasistencia.php">Inasistencias</a>
@@ -61,10 +62,11 @@
                 <li><a href="../justificar-inasistencia.php">Justificación de Inasistencia</a></li>
             </ul>
         </li>
+        <li><a href="../formulario/logout.php" class="logout">Cerrar Sesión</a></li>
     </ul>
 </div>
 <main>
-<div class="table-wrapper"> 
+<div class="table-wrapper3"> 
 <table border="1" bgcolor="white" class="fl-table">
     <thead>
         <tr><th>ID_Alumno</th><th>Dni</th><th>Nombre</th><th>Apellido</th><th>Correo</th><th>Sexo</th><th>Fecha nacimiento</th><th>Lugar de nacimiento</th><th>Dirección</th><th>Nacionalidad</th><th>Cuil</th><th>Secundario</th><th>Lugar Secundario</th></tr>
@@ -72,7 +74,7 @@
     <tbody>
 <?php
 include "../conexion.php";
-$sql="Select * from alumnos order by id_alumno";
+$sql="Select alumnos.*,generos.desc_genero,nacionalidades.desc_nacion, secundario.desc_secundario from alumnos inner join generos on alumnos.sexo=generos.id_genero inner join nacionalidades on alumnos.nacionalidad=nacionalidades.nacionalidad inner join secundario on alumnos.secundario=secundario.id_secundario order by id_alumno";
 $resultado = mysqli_query($con,$sql);
 if(empty($resultado)){
 echo'No existen datos que mostrar';
@@ -84,13 +86,13 @@ echo'No existen datos que mostrar';
         echo "<td>".$fila['nombre']."</td>";
         echo "<td>".$fila['apellido']."</td>";
         echo "<td>".$fila['correo']."</td>";
-        echo "<td>".$fila['sexo']."</td>";
+        echo "<td>".$fila['desc_genero']."</td>";
         echo "<td>".$fila['fecha_nacimiento']."</td>";
         echo "<td>".$fila['lugar_nacimiento']."</td>";
         echo "<td>".$fila['direccion']."</td>";
-        echo "<td>".$fila['nacionalidad']."</td>";
+        echo "<td>".$fila['desc_nacion']."</td>";
         echo "<td>".$fila['cuil']."</td>";
-        echo "<td>".$fila['secundario']."</td>";
+        echo "<td>".$fila['desc_secundario']."</td>";
         echo "<td>".$fila['lugar_secundario']."</td>";
         // echo "<td>".$fila['alergias']."</td>";
         // echo "<td>".$fila['tipo_alergia']."</td>";

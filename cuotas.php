@@ -47,13 +47,14 @@
     <ul class="nav">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="ficha_alumno/formulario_alumno.php">Alumno</a>
-        <ul>
+        <!-- <ul>
             <li><a href="formulario/login.html">Usuario</a></li>
-        </ul></li>
+        </ul> -->
+    </li>
         <li><a href="cursos.html">Cursos</a></li>
         <li><a href="inscripciones.php">Inscripciones</a>
         <ul>
-            <li><a href="cuotas.php">Cuotas</a></li>
+            <li><a href="cuotas.php?nrodoc=0">Cuotas</a></li>
         </ul>
         </li>
         <li><a href="inasistencia.php">Inasistencias</a>
@@ -61,62 +62,73 @@
                 <li><a href="justificar-inasistencia.php">Justificación de Inasistencia</a></li>
             </ul>
         </li>
+        <li><a href="formulario/logout.php" class="logout">Cerrar Sesión</a></li>
     </ul>
 </div>
 <main>
-    <div align="center" class="cuotas-form">
-        <form action="guardar_cuotas.php" method="POST">
-            <table>
-            <caption><h2>Cuotas de alumnos</h2></caption></thead>
-                <tr>
-                    <td><label for="datos[]">Datos alumno</label></td>
-                <td><select name="datos[]" id="datos[]">
+<div align="center" class="login-form">
+    <form action="buscar_cuota.php" method="get">
+    <h2>Consultar cuota</h2>
+        <select name="cuotas[]" id="cuotas[]">
+            <option value="0">Buscar alumno</option>
             <?php
             include "conexion.php";
-                    $sql="select * from alumnos order by id_alumno";
-                    $datas = mysqli_query($con,$sql);
+            $sql="select * from inscripciones order by dni";
+            $datas = mysqli_query($con,$sql);
                     if(empty($datas)){
-                        echo "<option value='0'>No hay datos</option>";
+                        echo '<script>alert("No se encontraron datos de alumnos. No se puede continuar."); window.location="index.html";</script>';
+                        exit;
                     }else{
                         $nfilas= mysqli_num_rows($datas);
                         if($nfilas>0){
                             while ($fila = mysqli_fetch_array($datas)) {
-                                echo "<option value=".$fila['id_alumno'].">".$fila['dni'].' '.$fila['nombre'].' '.$fila['apellido']."</option>";
+                                echo "<option value=".$fila['dni'].">".$fila['dni']."</option> ";
                             }
                         }
                     }
-                
-            ?>        
-            </select></td></tr>
-                <tr>
-                    <td><label for="mes_pago[]">Mes pago</label></td>
-                    <td><select name="mes_pago[]" id="mes_pago[]">
-                    <?php
-                    $sql="select * from mes_pago order by id_mes";
-                    $datas = mysqli_query($con,$sql);
-                    if(empty($datas)){
-                        echo "<option value='0'>No hay datos</option>";
-                    }else{
-                        $nfilas= mysqli_num_rows($datas);
-                        if($nfilas>0){
-                            while($fila = mysqli_fetch_array($datas)) {
-                                echo "<option value=".$fila['id_mes'].">".$fila['des_mes']."</option>";
-                            }
-                        }
-                    }
-                        ?>  
-                    </select></td>
-                </tr>
-                <tr>
-                    <td><label for="importe">Importe</label></td>
-                    <td><input type="number" name="importe" id="importe" placeholder="Ingrese el importe"></td>
-                </tr>
-            </table>
-            <input type="submit" name="btn-cargar" id="btn-cargar" value="Cargar pago">
-        </form>
-    
-    <br>
-    <a href="index.html">Volver a inicio</a><br>
+            ?>
+        </select>
+
+        <input type="submit" value="Buscar cuotas" name="buscar" id="buscar">
+    </form>
+<?php
+$doc = $_GET['nrodoc'];
+if($doc>0){
+	include "conexion.php";
+
+	$sql="select * from cuotas where dni='$doc'";
+	
+	$datos = mysqli_query($con,$sql);
+	if(empty($datos)){
+		echo "Sin datos de Cuotas:";
+	}else{
+?>
+<div class="table-wrapper">	
+<table border=1 class="fl-table">
+	<thead>
+		<tr><th>Documento</th><th>N° Cuota</th><th>Importe</th><th>Saldo</th><th>Estado de cuota</th>
+		</tr>
+	</thead>
+	<tbody>		
+<?php
+	while ($reg = mysqli_fetch_array($datos)) {
+			echo '<tr>';
+			echo '<td>'.$reg['dni'].'</td>';
+            echo '<td>'.$reg['nrocuota'].'</td>';
+			echo '<td>'.$reg['importe'].'</td>';
+			echo '<td>'.$reg['saldo'].'</td>';
+            echo '<td>'.$reg['estado_cuota'].'</td>';
+            echo '<td><a href="pagar_cuota.php?dni='.$reg['dni'].'&nrocuota='.$reg['nrocuota'].'&importe='.$reg['importe'].'&saldo='.$reg['saldo'].'">Pagar Cuota</a></td>';
+			echo '</tr>';
+	}
+	}
+}
+?>
+</div>	
+</table>
+</div>
+<div class="btn-atras2">
+<a href="index.html">Volver atrás</a>
 </div>
 </main>
 <div class="espacio">

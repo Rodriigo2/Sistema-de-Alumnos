@@ -20,6 +20,20 @@ $lugar_secundario=$_POST['lugar_secundario'];
 // 	echo '<script>alert("El nombre del alumno no debe superar los 30 caracteres."); window.location="formulario_alumno";</script>';
 // 	exit;
 // }
+
+if($nacionalidad[0]==0){
+	echo '<script>alert("Ingrese una nacionalidad válida"); history.go(-1);</script>';
+	exit;
+}
+if($genero[0]==0){
+	echo '<script>alert("Ingrese un género válido"); history.go(-1);</script>';
+	exit;
+}
+if($secundario[0]==0){
+	echo '<script>alert("Debe responder si termino el secundario o no."); history.go(-1);</script>';
+	exit;
+}
+
 //conectar a la bdd
 include "../conexion.php";
 

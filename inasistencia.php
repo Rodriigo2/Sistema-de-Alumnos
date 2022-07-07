@@ -47,13 +47,14 @@
     <ul class="nav">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="ficha_alumno/formulario_alumno.php">Alumno</a>
-        <ul>
+        <!-- <ul>
             <li><a href="formulario/login.html">Usuario</a></li>
-        </ul></li>
+        </ul> -->
+    </li>
         <li><a href="cursos.html">Cursos</a></li>
         <li><a href="inscripciones.php">Inscripciones</a>
         <ul>
-            <li><a href="cuotas.php">Cuotas</a></li>
+            <li><a href="cuotas.php?nrodoc=0">Cuotas</a></li>
         </ul>
         </li>
         <li><a href="inasistencia.php">Inasistencias</a>
@@ -61,6 +62,7 @@
                 <li><a href="justificar-inasistencia.php">Justificación de Inasistencia</a></li>
             </ul>
         </li>
+        <li><a href="formulario/logout.php" class="logout">Cerrar Sesión</a></li>
     </ul>
 </div>
 <main>
@@ -71,44 +73,23 @@
                 <tr>
                     <td><label for="datos[]">Datos alumno</label></td>
                     <td><select name="datos[]" id="datos[]">
+                        <option value="0">Selecciona un alumno</option>
                     <?php
             include "conexion.php";
-                    $sql="select * from alumnos order by apellido,nombre";
+                    $sql="select * from inscripciones order by dni";
                     $datas = mysqli_query($con,$sql);
                     if(empty($datas)){
-                        echo "<option value='0'>No hay datos</option>";
+                        echo '<script>alert("No se encontraron datos de alumnos. No se puede continuar."); window.location="index.html";</script>';
+                        exit;
                     }else{
                         $nfilas= mysqli_num_rows($datas);
                         if($nfilas>0){
                             while ($fila = mysqli_fetch_array($datas)) {
-                                echo "<option value=".$fila['dni'].">".$fila['apellido'].' '.$fila['nombre']."</option>";
+                                echo "<option value=".$fila['dni'].">".$fila['dni']."</option>";
                             }
                         }
                     }
-                
             ?>        
-                <tr>
-                    <td><label for="curso[]">Curso</label></td>
-                    <td><select name="curso[]" id="curso[]">
-                    <?php
-                    $sql="select * from cursos order by cod_curso";
-                    $datas = mysqli_query($con,$sql);
-                    if(empty($datas)){
-                        echo "<option value='0'>No hay cursos</option>";
-                    }else{
-                        $nfilas= mysqli_num_rows($datas);
-                        if($nfilas>0){
-                            while ($fila = mysqli_fetch_array($datas)) {
-                                echo "<option value=".$fila['cod_curso'].">".$fila['nombre_curso']."</option>";
-                            }
-                        }
-                    }
-                
-            ?>        
-                    </select></td>
-                </tr>
-
-
                 <tr>
                     <td><label for="fecha">Fecha</label></td>
                     <td><input type="text" name="fecha" id="fecha" placeholder="DD/MM/AAAA"></td>
@@ -117,7 +98,7 @@
             <input type="submit" name="inasistencia" id="inasistencia" value="Cargar inasistencia">
             </form>
     <br>
-    <a href="justificar-inasistencia.php">Cargar justificatorio |</a>
+    <a href="justificar-inasistencia.php?doc=">Cargar justificatorio |</a>
     <a href="index.html">Volver a inicio</a>
 </div>
 </main>

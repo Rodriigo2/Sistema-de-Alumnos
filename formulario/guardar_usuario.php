@@ -6,13 +6,18 @@ $correo = $_POST['correo'];
 
 //validar datos
 if($nombre==""){
-    echo'<script>alert("El nombre debe ser un texto válido"); window.location="crear_cuenta.html";</script>';
+    echo'<script>alert("El nombre debe ser un texto válido"); history.go(-1);</script>';
     exit;
 }
 
 
 if($clave==""){
-    echo'<script>alert("El campo contraseña no debe estar vacio."); window.location="crear_cuenta.html";</script>';
+    echo'<script>alert("El campo contraseña no debe estar vacio."); history.go(-1);</script>';
+    exit;
+}
+
+if($correo==""){
+    echo'<script>alert("El campo Correo electrónico no debe estar vacio."); history.go(-1);</script>';
     exit;
 }
 

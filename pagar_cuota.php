@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,10 +9,10 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <title>Listado de Especialidades</title>
+    <title>Cuotas</title>
 </head>
 <body>
-<header><h1>Pantalla Lista Especialidades</h1>
+<header><h1>Pantalla Cuotas</h1>
 <img class="img-alumno" src="images/alumno.png" alt="Alumno-foto" align="right"></header>
     <!-- <div class="navbar">
     <nav>
@@ -37,12 +39,12 @@
         <li><a href="inasistencia.php">Inasistencias</a></li>
     </div>
         <ul>
-            <li><a href="justificar-inasistencia.php">Justificación Inasistencia</a></li> -->
-            <!-- <li><a href="#">Cargar Asistencia</a></li> -->
+            <li><a href="justificar-inasistencia.php">Justificación Inasistencia</a></li>
+             <li><a href="#">Cargar Asistencia</a></li> -->
         <!-- </ul>
     </ul>
 </nav>
-</div> -->
+</div> --> 
 <div id="header">
     <ul class="nav">
         <li><a href="index.html">Inicio</a></li>
@@ -65,45 +67,65 @@
         <li><a href="formulario/logout.php" class="logout">Cerrar Sesión</a></li>
     </ul>
 </div>
+<div>
 <main>
-<div align="center" class="table-wrapper"> 
-<table border="1" bgcolor="white" class="fl-table">
-    <thead>
-        <tr><th>Código</th><th>Nombre de especialidad</th><th>Valor</th></tr>
-    </thead>
-    <tbody>
+<div align="center" class="login-form">
+<form action="cuota_pagado.php" method="Post">
 <?php
-include "conexion.php";
-$sql="Select * from especialidades order by id_especialidad";
-$resultado = mysqli_query($con,$sql);
-if(empty($resultado)){
-echo'No existen datos que mostrar';
-}else{
-    while($fila = mysqli_fetch_array($resultado)){
-        //creo las filas
-        echo "<tr><td>".$fila['id_especialidad']."</td>";
-        echo "<td>".$fila['desc_especialidad']."</td>";
-        echo "<td>".$fila['valor']."</td>";
-        echo '<td><a href="modif_especialidad.php?cod='.$fila['id_especialidad'].'">Modificar</td>';
-        echo '<td><a href="borrar_especialidad.php?cod='.$fila['id_especialidad'].'">Eliminar</a></td></tr>';
-    }
-}
+$dni = $_GET['dni'];
+$nrocuota = $_GET['nrocuota'];
+$importe = $_GET['importe'];
+$saldo = $_GET['saldo'];
+    include  "conexion.php";
+
+    $sql="select * from cuotas where nrocuota=$nrocuota and dni=$dni";
+    $datas = mysqli_query($con,$sql);
+    if(empty($datas)){
+		echo "No se encontraron datos de la cuota";
+	}else{
+        $nfilas=  mysqli_num_rows($datas);
+        if($nfilas>0){
+            $fila=mysqli_fetch_array($datas);
+            echo '<table>';
+            echo '<h2>Pagar cuota</h2>';
+            echo '<form action="cuota_pagada.php" method="POST" >';
+			echo '<tr><td><label for="dni">Documento</label></td>';
+			echo '<td><input type="text" readonly name="dni" id="dni" value="'.$fila['dni'].'"></td></tr>';
+			
+ 		   	echo '<tr><td><label for="nrocuota">Cuota N°:</label></td>';
+			echo '<td><input type="number" readonly name="nrocuota" id="nrocuta" value="'.$fila['nrocuota'].'"></td></tr>';
+
+            
+            echo '<tr><td><label for="saldo">Saldo:</label></td>';
+            echo '<td><input type="number" readonly name="saldo" id="saldo" value="'.$fila['saldo'].'"</td></tr>';
+            
+            echo '<tr><td><label for="importe">Importe:</label></td>';
+            echo '<td><input type="number" name="importe" id="importe" placeholder="Ingrese el importe"</td></tr>';
+
+			
+            echo '</table>';
+			echo '<input type="submit" value="Pagar cuota" name="btnsave" id="btnsave" />';
+
+
+			echo "</form>";
+
+
+		}else{echo "Nrofilas=0";}
+        }
 mysqli_close($con);
 ?>
-</tbody>
+    </form>
+    </div>
+</div>	
 </table>
-</div>
-<div align="center" class="btn-atras2">
-    <br>
-<a href="especialidad.html">Volver atrás</a>
 </div>
 </main>
 <div class="espacio">
     <footer>
     &copy 2022 - Sistema de Alumnos creado por Peralta Rodrigo
     </footer>
+</div>
 </body>
 </html>
 
-<?php
-?>
+

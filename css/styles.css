@@ -6,7 +6,7 @@
 
 #header {
     margin:auto;
-    width:500px;
+    width:600px;
     font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -50,6 +50,8 @@ ul, ol {
 }
 h1{
     color: white;
+    text-align: center;
+    text-shadow: 3px 3px 2px black;
 }
 body{
     background-color: #066699;
@@ -94,7 +96,7 @@ a{
 .cuotas-form{
     background-color: #f8f8ec;
     margin-top: 100px;
-    width: 350px; border: 5px;
+    width: 360px; border: 5px;
     margin-left: auto;
     margin-right:auto;
     border-radius: 5px;
@@ -121,7 +123,7 @@ a{
 .crearcuenta-form{
     background-color: #f8f8ec;
     margin-top: 100px;
-    width: 320px; border: 10px;
+    width: 360px; border: 10px;
     margin-left: auto;
     margin-right:auto;
     border-radius: 5px;
@@ -165,7 +167,6 @@ main{
     width: 100%;
     min-height: 464px;
 }
-
 .btn-atras{
     text-decoration:none;
     font-weight:600;
@@ -173,11 +174,26 @@ main{
     color:#ffffff;
     padding-top:15px;
     padding-bottom:15px;
-    padding-left:150px;
-    padding-right:150px;
+    padding-left:140px;
+    padding-right:140px;
     background-color:#02416d;
     margin-right: 500px;
 margin-left: 500px;
+}
+
+.btn-atras2{
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    color:#ffffff;
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:140px;
+    padding-right:140px;
+    background-color:#02416d;
+    margin-right: 500px;
+    margin-left: 500px;
+    margin-top: 100px;
 }
 
 input {
@@ -221,6 +237,22 @@ input {
     margin-top: 100px;
     margin-right: 100px;
     margin-left: 50px;
+}
+
+.table-wrapper2{
+    /* margin: 10px 70px 70px; */
+    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+    margin-top: 25px;
+    margin-right: 100px;
+    margin-left: 50px;
+}
+
+.table-wrapper3{
+    /* margin: 10px 70px 70px; */
+    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+    margin-top: 100px;
+    margin-right: 100px;
+    margin-left: 10px;
 }
 
 .fl-table {

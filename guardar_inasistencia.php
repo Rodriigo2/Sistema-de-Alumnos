@@ -1,6 +1,5 @@
 <?php
 $datos = $_POST['datos'];
-$curso = $_POST['curso'];
 $fecha = $_POST['fecha'];
 
 include "conexion.php";
@@ -13,7 +12,7 @@ if($nro_filas_dev!=0){
     exit;
 }
 
-$sql = "INSERT INTO inasistencias(dni,curso,fecha) values ($datos[0],$curso[0],'$fecha')";
+$sql = "INSERT INTO inasistencias(dni,fecha) values ($datos[0],'$fecha')";
 
 $resultado = mysqli_query($con,$sql);
 
@@ -27,6 +26,4 @@ if($resultado){
 }
 //cerrar el enlace a la bdd
 mysqli_close($con);
-?>
-
 ?>

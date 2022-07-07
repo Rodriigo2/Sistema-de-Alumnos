@@ -16,13 +16,14 @@
     <ul class="nav">
         <li><a href="../index.html">Inicio</a></li>
         <li><a href="formulario_alumno.php">Alumno</a>
-        <ul>
+        <!-- <ul>
             <li><a href="../formulario/login.html">Usuario</a></li>
-        </ul></li>
+        </ul> -->
+    </li>
         <li><a href="../cursos.html">Cursos</a></li>
         <li><a href="../inscripciones.php">Inscripciones</a>
         <ul>
-            <li><a href="../cuotas.php">Cuotas</a></li>
+            <li><a href="../cuotas.php?nrodoc=0">Cuotas</a></li>
         </ul>
         </li>
         <li><a href="../inasistencia.php">Inasistencias</a>
@@ -30,6 +31,7 @@
                 <li><a href="../justificar-inasistencia.php">Justificación de Inasistencia</a></li>
             </ul>
         </li>
+        <li><a href="../formulario/logout.php" class="logout">Cerrar Sesión</a></li>
     </ul>
 </div>
 <div> 
@@ -67,11 +69,13 @@
             ?>
             <tr><td><label for="genero[]">Género</label></td>
             <td><select name="genero[]" id="genero[]">
+                <option value="0">Selecciona el Género</option>
             <?php
             $sql="select * from generos order by desc_genero";
                     $datas = mysqli_query($con,$sql);
                     if(empty($datas)){
-                        echo "<option value='0'>Sin género</option>";
+                        echo '<script>alert("No se encontraron datos de alumnos. No se puede continuar."); window.location="lista_alumno.php";</script>';
+                        exit;
                     }else{
                         $nfilas= mysqli_num_rows($datas);
                         if($nfilas>0){
@@ -103,11 +107,13 @@
             ?>
             <tr><td><label for="nacionalidad[]">Nacionalidad</label></td>
             <td><select name="nacionalidad[]" id="nacionalidad[]">
+                <option value="0">Selecciona la Nacionalidad</option>
             <?php
             $sql="select * from nacionalidades order by desc_nacion";
                     $datas = mysqli_query($con,$sql);
                     if(empty($datas)){
-                        echo "<option value='0'>Sin Nacionalidad</option>";
+                        echo '<script>alert("No se encontraron datos de alumnos. No se puede continuar."); window.location="lista_alumno.php";</script>';
+                        exit;
                     }else{
                         $nfilas= mysqli_num_rows($datas);
                         if($nfilas>0){

@@ -16,14 +16,14 @@
     <ul class="nav">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="ficha_alumno/formulario_alumno.php">Alumno</a>
-        <ul>
+        <!-- <ul>
             <li><a href="formulario/login.html">Usuario</a></li>
-        </ul>
+        </ul> -->
         </li>
         <li><a href="cursos.html">Cursos</a></li>
         <li><a href="inscripciones.php">Inscripciones</a>
         <ul>
-            <li><a href="cuotas.php">Cuotas</a></li>
+            <li><a href="cuotas.php?nrodoc=0">Cuotas</a></li>
         </ul>
         </li>
         <li><a href="inasistencia.php">Inasistencias</a>
@@ -31,6 +31,7 @@
                 <li><a href="justificar-inasistencia.php">Justificación de Inasistencia</a></li>
             </ul>
         </li>
+        <li><a href="formulario/logout.php" class="logout">Cerrar Sesión</a></li>
     </ul>
 </div>
     <main>
@@ -53,8 +54,11 @@
 			echo '<input type="text" readonly name="txtcod" id="txtcod" value="'.$fila['id_especialidad'].'"><br>';
 			
  		   	echo '<br><label for="txtnombre">Nombre de la especialidad</label>';
-			echo '<input type="text" name="txtnombre" id="txtnombre" value="'.$fila['desc_especialidad'].'"><br><br>';
+			echo '<input type="text" name="txtnombre" id="txtnombre" value="'.$fila['desc_especialidad'].'"><br>';
 			
+            echo '<br><label for="valor">Valor especialidad</label>';
+			echo '<input type="text" name="valor" id="valor" value="'.$fila['valor'].'"><br><br>';
+
 			echo '<input type="submit" value="Actualizar Especialidad" name="btnsave" id="btnsave" />';
 
 

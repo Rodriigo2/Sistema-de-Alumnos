@@ -27,7 +27,7 @@ if($apellido ==""){
 }
 
 if($dni ==""){
-    echo'<script>alert("El DNI debe ser un texto válido"); history.go(-1);</script>';
+    echo'<script>alert("El campo DNI debe ser un texto válido"); history.go(-1);</script>';
     exit;
 }
 

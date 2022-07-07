@@ -10,8 +10,7 @@
     <title>Modificar Usuario</title>
 </head>
 <body>
-<header><h1>Modificar Usuario</h1>
-<img class="img-alumno" src="../images/alumno.png" alt="Alumno-foto" align="right"></header>
+<header><h1>Modificar Usuario</h1></header>
 <main>
 <div align="center" class="login-form">
 <table>

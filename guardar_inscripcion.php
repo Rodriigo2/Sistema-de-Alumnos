@@ -23,7 +23,7 @@ if($curso[0]==0){
 }
 include "conexion.php";
 
-$sql="Select * from inscripciones where dni=$alumno[0]";
+$sql="Select * from inscripciones where dni=$alumno[0] and id_especialidad=$especialidad[0] and cod_curso=$curso[0]";
 $res_sel = mysqli_query($con,$sql);
 $nro_filas_dev=mysqli_num_rows($res_sel);
 if($nro_filas_dev!=0){
@@ -47,11 +47,11 @@ if($resultado){
     $fila = mysqli_fetch_array($resultado);
     $valor=$fila['valor'];
 
-    $sql = "INSERT INTO cuotas(dni,nrocuota,importe,saldo) values ($alumno[0],$i,$valor,$valor)";
+    $sql = "INSERT INTO cuotas(dni,nrocuota,importe,saldo,estado_cuota) values ($alumno[0],$i,$valor,$valor,1)";
 
         $resultado = mysqli_query($con,$sql);      
     }
-    echo'<script>alert("Se inscribio al alumno con Exito!!"); window.location="inscripciones.php";</script>';
+    echo'<script>alert("Se inscribio al alumno con Exito!!"); window.location="inscripciones.php" </script>';
     //todo se ejecuto correctamente
 }else{
     //Hubo un error al insertar

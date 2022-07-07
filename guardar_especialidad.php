@@ -2,6 +2,7 @@
 //recibir datos
 $codigo = $_POST['txtcod'];
 $nombre = $_POST['txtnombre'];
+$valor = $_POST['valor'];
 
 //validar los datos
 if($codigo<=0){
@@ -11,6 +12,11 @@ if($codigo<=0){
 
 if($nombre==""){
     echo'<script>alert("El nombre debe ser un texto válido"); window.location="especialidad.html";</script>';
+    exit;
+}
+
+if($valor<=0){
+    echo'<script>alert("El valor debe ser un número positivo"); window.location="especialidad.html";</script>';
     exit;
 }
 
@@ -25,7 +31,7 @@ if($nro_filas_dev !=0){
     exit;
 }
 //armar la query sql
-$sql = "INSERT INTO especialidades(id_especialidad,desc_especialidad) VALUES ($codigo,'$nombre')";
+$sql = "INSERT INTO especialidades(id_especialidad,desc_especialidad,valor) VALUES ($codigo,'$nombre',$valor)";
 
 //ejecutar la query
 $resultado = mysqli_query($con,$sql);
@@ -36,7 +42,7 @@ if($resultado){
     echo'<script>alert("La especialidad se creó con éxito"); window.location="especialidad.html";</script>';
 }else{
     //Hubo un error al insertar
-    echo'<script>alert("Hubo un error al crear la especialidad"); window.location="especialidad.html";</script>';
+    echo'<script>alert("Hubo un error al crear la especialidad"); history.go(-1);</script>';
 }
 //cerrar el enlace a la bdd
 mysqli_close($con);

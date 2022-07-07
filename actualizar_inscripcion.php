@@ -1,12 +1,12 @@
 <?php
-$id_especialidad=$_POST['txtcod'];
-$nombre_especialidad=$_POST['txtnombre'];
-$valor = $_POST['valor'];
+$dni=$_POST['dni'];
+$curso=$_POST['curso'];
+$especialidad = $_POST['especialidad'];
 //conectar a la bdd
 include "conexion.php";
 
 //armar la consulta sql
-$sql ="update especialidades set valor=$valor, desc_especialidad='$nombre_especialidad' where id_especialidad='$id_especialidad'";
+$sql ="update inscripciones set cod_curso='$curso[0]', id_especialidad='$especialidad[0]' where dni='$dni'";
 
 //ejecutar la consulta
 $res = mysqli_query($con,$sql);
@@ -15,7 +15,7 @@ $res = mysqli_query($con,$sql);
 if ($res) {
 	//ejecucion de la consulta exitosa}
 	// (cartel en javascript y redireccionamiento)
-	echo '<script>alert("Especialidad Actualizada!");window.location="especialidad_lista.php";</script>';
+	echo '<script>alert("Inscripcion actualizado!");window.location="inscripcion_listar.php";</script>';
 }else{
 	//ejecucion de la consulta con error
 	echo '<script>alert("Error al actualizar!");</script>';
